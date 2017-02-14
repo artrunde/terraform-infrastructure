@@ -7,31 +7,23 @@ provider "aws" {
   profile = "artrunde"
 }
 
-module "frontend-html" {
+module "www-public" {
 
-  source = "../../../modules/www-public-html"
-  bucket  = "dev-www.artrunde.com"
-  name = "Frontend service for HTML"
-  env  = "dev"
+  source = "../../../modules/www-public"
 
-}
+  // WWW
+  bucket_html = "dev-www.artrunde.com"
+  name_html   = "Frontend service for HTML"
 
-module "frontend-assets" {
+  // Assets
+  bucket_assets = "dev-www.artrunde.com"
+  name_assets   = "Frontend service for assets"
 
-  source = "../../../modules/www-public-assets"
-  bucket  = "dev-assets.artrunde.com"
-  name = "Frontend service for assets"
-  env  = "dev"
-
-}
-
-module "frontend-root" {
-
-  source = "../../../modules/www-public-root"
-
-  bucket  = "dev.artrunde.com"
-  name = "Frontend service redirect"
-  env  = "dev"
+  // Root domain
+  bucket_root     = "dev.artrunde.com"
+  name_root       = "Redirect root domain to www"
   redirect_all_to = "https://www.evercall.dk"
+
+  env  = "dev"
 
 }
