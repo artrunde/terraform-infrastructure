@@ -17,7 +17,7 @@ module "www-public" {
   name_html   = "Frontend service for HTML"
 
   // Assets
-  bucket_assets = "dev-www.artrunde.com"
+  bucket_assets = "dev-assets.artrunde.com"
   name_assets   = "Frontend service for assets"
 
   // root domain
