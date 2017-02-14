@@ -10,28 +10,17 @@ provider "aws" {
 module "frontend-html" {
 
   source = "../../../modules/www-public-html"
-  bucket  = "dev-www.artrunde.com"
+  bucket  = "www.artrunde.com"
   name = "Frontend service for HTML"
-  env  = "dev"
+  env  = "prod"
 
 }
 
 module "frontend-assets" {
 
   source = "../../../modules/www-public-assets"
-  bucket  = "dev-assets.artrunde.com"
+  bucket  = "assets.artrunde.com"
   name = "Frontend service for assets"
-  env  = "dev"
-
-}
-
-module "frontend-root" {
-
-  source = "../../../modules/www-public-root"
-
-  bucket  = "dev.artrunde.com"
-  name = "Frontend service redirect"
-  env  = "dev"
-  redirect_all_to = "https://www.evercall.dk"
+  env  = "prod"
 
 }

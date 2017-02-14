@@ -26,5 +26,6 @@ resource "aws_s3_bucket" "www-public-html" {
     error_document = "error.html"
   }
 
-}
+  policy = "${file("www-public-html-policy.json")}" // This should always be relative to the env path
 
+}

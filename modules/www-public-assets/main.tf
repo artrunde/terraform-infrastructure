@@ -26,5 +26,7 @@ resource "aws_s3_bucket" "www-public-assets" {
     error_document = "error.html"
   }
 
+  policy = "${file("www-public-assets-policy.json")}" // This should always be relative to the env path
+
 }
 
