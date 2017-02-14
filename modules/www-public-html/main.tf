@@ -23,11 +23,3 @@ resource "aws_s3_bucket" "www-public-html" {
   acl     = "${var.bucket_acl}"
 
 }
-
-resource "aws_s3_bucket" "www-public-assets" {
-
-  bucket  = "${var.bucket_name}"
-  acl     = "${var.bucket_acl}"
-
-}
-
