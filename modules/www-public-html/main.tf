@@ -1,25 +1,30 @@
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# CREATE ALL THE RESOURCES TO DEPLOY AN APP IN AN AUTO SCALING GROUP WITH AN ELB
-# This template runs a simple "Hello, World" web server in Auto Scaling Group (ASG) with an Elastic Load Balancer
-# (ELB) in front of it to distribute traffic across the EC2 Instances in the ASG.
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# ------------------------------------------------------------------------------
-# CONFIGURE OUR AWS CONNECTION
-# ------------------------------------------------------------------------------
-
-provider "aws" {
-  region = "eu-central-1"
-  profile = "artrunde"
-}
-
 # ---------------------------------------------------------------------------------------------------------------------
 # CREATE AN S3 BUCKETS FOR STATIC WEBSITES. ONE FOR HTML AND ONE FOR ASSETS
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "aws_s3_bucket" "www-public-html" {
 
-  bucket  = "${var.bucket_name}"
-  acl     = "${var.bucket_acl}"
+  bucket        = "${var.bucket}"
+  acl           = "${var.acl}"
+  force_destroy = true
+
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["GET"]
+    allowed_origins = ["*"]
+    expose_headers = ["ETag"]
+    max_age_seconds = "${var.cache_max_age}"
+  }
+
+  tags {
+    "name"  = "${var.name}"
+    "env"   = "${var.env}"
+  }
+
+  website {
+    index_document = "index.html"
+    error_document = "error.html"
+  }
 
 }
+

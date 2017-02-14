@@ -1,9 +1,26 @@
+# ------------------------------------------------------------------------------
+# CONFIGURE OUR AWS CONNECTION
+# ------------------------------------------------------------------------------
+
+provider "aws" {
+  region = "eu-central-1"
+  profile = "artrunde"
+}
+
 module "frontend-html" {
 
-  source = "git::ssh://git@github.com/artrunde/terraform-infrastructure.git//modules/www-public-html?ref=v0.0.1"
-
-  bucket  = "${var.bucket_name}"
-  acl     = "${var.bucket_acl}"
+  source = "../../../modules/www-public-html"
   bucket  = "dev-www.artrunde.com"
+  name = "Frontend service for HTML"
+  env  = "dev"
+
+}
+
+module "frontend-assets" {
+
+  source = "../../../modules/www-public-assets"
+  bucket  = "dev-assets.artrunde.com"
+  name = "Frontend service for assets"
+  env  = "dev"
 
 }
