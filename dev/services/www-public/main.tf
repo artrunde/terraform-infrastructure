@@ -9,9 +9,10 @@ provider "aws" {
 
 module "www-public" {
 
-  source = "../../../modules/www-public"
+  // Blueprint
+  source = "git::git@github.com:artrunde/terraform-modules.git//www-public?ref=0.0.5"
 
-  // WWW
+  // HTML
   bucket_html = "dev-www.artrunde.com"
   name_html   = "Frontend service for HTML"
 
@@ -19,7 +20,7 @@ module "www-public" {
   bucket_assets = "dev-www.artrunde.com"
   name_assets   = "Frontend service for assets"
 
-  // Root domain
+  // root domain
   bucket_root     = "dev.artrunde.com"
   name_root       = "Redirect root domain to www"
   redirect_all_to = "https://www.evercall.dk"
