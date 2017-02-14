@@ -1,7 +1,15 @@
 module "frontend-html" {
-  source = "/modules/frontend-app"
+
+  source = "https://github.com/artrunde/terraform-infrastructure.git?ref=v0.0.1"
+
+  bucket  = "${var.bucket_name}"
+  acl     = "${var.bucket_acl}"
+  bucket  = "dev-www.artrunde.com"
+
 }
 
 module "frontend-assets" {
-  source = "/modules/frontend-app"
+
+  source = "https://github.com/artrunde/terraform-infrastructure.git?ref=v0.0.1"
+  bucket  = "dev-assets.artrunde.com"
 }
