@@ -13,7 +13,6 @@ module "www-public" {
   # BLUEPRINT
   # ------------------------------------------------------------------------------
   source = "git::git@github.com:artrunde/terraform-modules.git//www-public?ref=0.1.1"
-  source = "../../../../terraform-modules/www-public/"
 
   # ------------------------------------------------------------------------------
   # S3 BUCKETS
