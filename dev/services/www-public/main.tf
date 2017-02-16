@@ -32,3 +32,22 @@ module "www-public" {
   env  = "dev"
 
 }
+
+module "www-public-assets-cdn" {
+
+  # ------------------------------------------------------------------------------
+  # BLUEPRINT
+  # ------------------------------------------------------------------------------
+  // source = "git::git@github.com:artrunde/terraform-modules.git//cdn/www-public-assets?ref=0.1.1"
+  source = "../../../../terraform-modules/cdn/www-public-assets"
+
+  # ------------------------------------------------------------------------------
+  # S3 BUCKETS
+  # ------------------------------------------------------------------------------
+  bucket_domain_name = ""
+
+  aliases = ["dev-assets.artrunde.com"]
+
+  env  = "dev"
+
+}
