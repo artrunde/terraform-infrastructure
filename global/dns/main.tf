@@ -8,14 +8,12 @@ provider "aws" {
 }
 
 # ------------------------------------------------------------------------------
-# CONFIGURE DNS ROOT ZONE
+# GET DNS ROOT ZONE INFORMRATION. THIS SHOULD BE CREATED MANUALLY
 # ------------------------------------------------------------------------------
 
-resource "aws_route53_zone" "root" {
-  name = "artrunde.com"
-  tags {
-    env = "prod"
-  }
+data "aws_route53_zone" "primary" {
+  name = "artrunde.com."
+  private_zone = false
 }
 
 # ------------------------------------------------------------------------------
@@ -24,7 +22,7 @@ resource "aws_route53_zone" "root" {
 
 resource "aws_route53_record" "mail-mx" {
 
-  zone_id = "${aws_route53_zone.root.zone_id}"
+  zone_id = "${data.aws_route53_zone.primary.zone_id}"
   name = "artrunde.com."
   type = "MX"
   ttl = "300"
@@ -35,7 +33,7 @@ resource "aws_route53_record" "mail-mx" {
 
 resource "aws_route53_record" "mail-autodiscover" {
 
-  zone_id = "${aws_route53_zone.root.zone_id}"
+  zone_id = "${data.aws_route53_zone.primary.zone_id}"
   name = "autodiscover.artrunde.com."
   type = "CNAME"
   ttl = "300"
@@ -46,7 +44,7 @@ resource "aws_route53_record" "mail-autodiscover" {
 
 resource "aws_route53_record" "mail-domainkey-01" {
 
-  zone_id = "${aws_route53_zone.root.zone_id}"
+  zone_id = "${data.aws_route53_zone.primary.zone_id}"
   name = "igq2pdsgn5wntnoeljujo66zib6t3iex._domainkey.artrunde.com."
   type = "CNAME"
   ttl = "300"
@@ -57,7 +55,7 @@ resource "aws_route53_record" "mail-domainkey-01" {
 
 resource "aws_route53_record" "mail-domainkey-02" {
 
-  zone_id = "${aws_route53_zone.root.zone_id}"
+  zone_id = "${data.aws_route53_zone.primary.zone_id}"
   name = "ut53hk64hamdnhz37i4mglge7k4mhwdx._domainkey.artrunde.com."
   type = "CNAME"
   ttl = "300"
@@ -68,7 +66,7 @@ resource "aws_route53_record" "mail-domainkey-02" {
 
 resource "aws_route53_record" "mail-domainkey-03" {
 
-  zone_id = "${aws_route53_zone.root.zone_id}"
+  zone_id = "${data.aws_route53_zone.primary.zone_id}"
   name = "b3cgk65xmmrdtkt57c2qcawoqctgsnf5._domainkey.artrunde.com."
   type = "CNAME"
   ttl = "300"
