@@ -40,6 +40,16 @@ module "frontend-static" {
   cdn_assets_cache_max_ttl      = 300
 
   # ------------------------------------------------------------------------------
+  # CDN WWW
+  # ------------------------------------------------------------------------------
+  create_cdn_www  = true // Creates DNS alias instead, if set to false
+  cdn_www_name    = "CDN distribution for dev www"
+
+  cdn_www_cache_min_ttl      = 0
+  cdn_www_cache_default_ttl  = 60
+  cdn_www_cache_max_ttl      = 300
+
+  # ------------------------------------------------------------------------------
   # TAGS
   # ------------------------------------------------------------------------------
   env  = "dev"
