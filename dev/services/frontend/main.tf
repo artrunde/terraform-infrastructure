@@ -30,7 +30,7 @@ module "frontend-static" {
   alias_record_assets = "dev-assets"
 
   # ------------------------------------------------------------------------------
-  # CDN
+  # CDN ASSETS
   # ------------------------------------------------------------------------------
   create_cdn_assets  = true // Creates DNS alias instead, if set to false
   cdn_assets_name    = "CDN distribution for dev assets"
