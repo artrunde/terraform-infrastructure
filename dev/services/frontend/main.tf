@@ -7,47 +7,41 @@ provider "aws" {
   profile = "artrunde"
 }
 
-module "www-public" {
+module "frontend-static" {
 
   # ------------------------------------------------------------------------------
   # BLUEPRINT
   # ------------------------------------------------------------------------------
-  // source = "git::git@github.com:artrunde/terraform-modules.git//www-public?ref=0.1.1"
+  //source = "git::git@github.com:artrunde/terraform-modules.git//www-public?ref=0.1.2"
   source = "../../../../terraform-modules/www-public/"
 
   # ------------------------------------------------------------------------------
   # S3 BUCKETS
   # ------------------------------------------------------------------------------
-  bucket_html   = "dev-www.artrunde.com"
-  name_html     = "Frontend service for HTML"
+  bucket_www    = "dev-www.artrunde.com"
+  name_www      = "Frontend service for HTML"
   bucket_assets = "dev-assets.artrunde.com"
   name_assets   = "Frontend service for assets"
 
   # ------------------------------------------------------------------------------
-  # DNS
+  # DNS - USED FOR CDN ALIAS OR REGULAR ALIAS
   # ------------------------------------------------------------------------------
-  record_www    = "dev-www"
-  record_assets = "dev-assets"
-
-  env  = "dev"
-
-}
-
-module "www-public-assets-cdn" {
+  alias_record_www    = "dev-www"
+  alias_record_assets = "dev-assets"
 
   # ------------------------------------------------------------------------------
-  # BLUEPRINT
+  # CDN
   # ------------------------------------------------------------------------------
-  // source = "git::git@github.com:artrunde/terraform-modules.git//cdn/www-public-assets?ref=0.1.1"
-  source = "../../../../terraform-modules/cdn/www-public-assets"
+  create_cdn_assets  = true // Creates DNS alias instead, if set to false
+  cdn_assets_name    = "CDN distribution for dev assets"
+
+  cdn_assets_cache_min_ttl      = 0
+  cdn_assets_cache_default_ttl  = 60
+  cdn_assets_cache_max_ttl      = 300
 
   # ------------------------------------------------------------------------------
-  # S3 BUCKETS
+  # TAGS
   # ------------------------------------------------------------------------------
-  bucket_domain_name = ""
-
-  aliases = ["dev-assets.artrunde.com"]
-
   env  = "dev"
 
 }
