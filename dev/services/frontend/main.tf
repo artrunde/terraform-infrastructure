@@ -7,51 +7,66 @@ provider "aws" {
   profile = "artrunde"
 }
 
-module "frontend-static" {
+module "frontend-html" {
+
+  //source = "git::git@github.com:artrunde/terraform-modules.git//s3-static-web?ref=0.1.2"
+  source = "../../../../terraform-modules/static-website/"
 
   # ------------------------------------------------------------------------------
-  # BLUEPRINT
+  # STATIC WEBSITE S3 BUCKET
   # ------------------------------------------------------------------------------
-  //source = "git::git@github.com:artrunde/terraform-modules.git//www-public?ref=0.1.2"
-  source = "../../../../terraform-modules/www-public/"
-
-  # ------------------------------------------------------------------------------
-  # S3 BUCKETS
-  # ------------------------------------------------------------------------------
-  bucket_www    = "dev-www.artrunde.com"
-  name_www      = "Frontend service for HTML"
-  bucket_assets = "dev-assets.artrunde.com"
-  name_assets   = "Frontend service for assets"
+  bucket_name     = "dev-www.artrunde.com"
+  env             = "dev"
+  root_domain     = "artrunde.com"
 
   # ------------------------------------------------------------------------------
   # DNS - USED FOR CDN ALIAS OR REGULAR ALIAS
   # ------------------------------------------------------------------------------
-  alias_record_www    = "dev-www"
-  alias_record_assets = "dev-assets"
+  alias_record    = "dev-www"
 
   # ------------------------------------------------------------------------------
-  # CDN ASSETS
+  # CDN DISTRIBUTION
   # ------------------------------------------------------------------------------
-  create_cdn_assets  = true // Creates DNS alias instead, if set to false
-  cdn_assets_name    = "CDN distribution for dev assets"
-
-  cdn_assets_cache_min_ttl      = 0
-  cdn_assets_cache_default_ttl  = 60
-  cdn_assets_cache_max_ttl      = 300
+  create_cdn              = true
+  cdn_cache_min_ttl       = 0
+  cdn_cache_default_ttl   = 60
+  cdn_cache_max_ttl       = 300
 
   # ------------------------------------------------------------------------------
-  # CDN WWW
+  # CERTIFICATE
   # ------------------------------------------------------------------------------
-  create_cdn_www  = true // Creates DNS alias instead, if set to false
-  cdn_www_name    = "CDN distribution for dev www"
+  cdn_acm_certificate_arn = "arn:aws:acm:us-east-1:401237329133:certificate/890f1dd0-214f-48ab-a600-0e49942fbde5"
 
-  cdn_www_cache_min_ttl      = 0
-  cdn_www_cache_default_ttl  = 60
-  cdn_www_cache_max_ttl      = 300
+}
+
+module "frontend-assets" {
+
+  //source = "git::git@github.com:artrunde/terraform-modules.git//s3-static-web?ref=0.1.2"
+  source = "../../../../terraform-modules/static-website/"
 
   # ------------------------------------------------------------------------------
-  # TAGS
+  # STATIC WEBSITE S3 BUCKET
   # ------------------------------------------------------------------------------
-  env  = "dev"
+  bucket_name     = "dev-assets.artrunde.com"
+  env             = "dev"
+  root_domain     = "artrunde.com"
+
+  # ------------------------------------------------------------------------------
+  # DNS - USED FOR CDN ALIAS OR REGULAR ALIAS
+  # ------------------------------------------------------------------------------
+  alias_record    = "dev-assets"
+
+  # ------------------------------------------------------------------------------
+  # CDN DISTRIBUTION
+  # ------------------------------------------------------------------------------
+  create_cdn              = true
+  cdn_cache_min_ttl       = 86400
+  cdn_cache_default_ttl   = 8640000
+  cdn_cache_max_ttl       = 8640000 # 100 days
+
+  # ------------------------------------------------------------------------------
+  # CERTIFICATE
+  # ------------------------------------------------------------------------------
+  cdn_acm_certificate_arn = "arn:aws:acm:us-east-1:401237329133:certificate/890f1dd0-214f-48ab-a600-0e49942fbde5"
 
 }
