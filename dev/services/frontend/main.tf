@@ -1,12 +1,3 @@
-# ------------------------------------------------------------------------------
-# CONFIGURE OUR AWS CONNECTION
-# ------------------------------------------------------------------------------
-
-provider "aws" {
-  region = "us-east-1"
-  profile = "artrunde"
-}
-
 module "frontend-html" {
 
   //source = "git::git@github.com:artrunde/terraform-modules.git//s3-static-web?ref=0.1.2"

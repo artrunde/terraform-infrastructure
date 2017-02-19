@@ -25,9 +25,13 @@ module "lambda" {
 
   source = "../../../../../../../terraform-modules/lambda/"
 
-  name    = "hello_lambda"
-  runtime = "python2.7"
-  role    = "${aws_iam_role.iam_role_for_lambda.arn}"
+  name            = "hello_lambda"
+  runtime         = "python2.7"
+  role            = "${aws_iam_role.iam_role_for_lambda.arn}"
+  upload_with_s3  = false
+  bucket_name     = false
+  env             = "dev"
+
 }
 
 # This is a second lambda function that will run the code
@@ -36,10 +40,14 @@ module "lambda_post" {
 
   source = "../../../../../../../terraform-modules/lambda/"
 
-  name    = "hello_lambda"
-  handler = "post_handler"
-  runtime = "python2.7"
-  role    = "${aws_iam_role.iam_role_for_lambda.arn}"
+  name            = "hello_lambda"
+  handler         = "post_handler"
+  runtime         = "python2.7"
+  role            = "${aws_iam_role.iam_role_for_lambda.arn}"
+  upload_with_s3  = false
+  bucket_name     = false
+  env             = "dev"
+
 }
 
 # Now, we need an API to expose those functions publicly
