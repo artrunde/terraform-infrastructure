@@ -18,7 +18,7 @@ module "frontend-html" {
   # ------------------------------------------------------------------------------
   # CDN DISTRIBUTION
   # ------------------------------------------------------------------------------
-  create_cdn              = true
+  create_cdn              = false
   cdn_cache_min_ttl       = 0
   cdn_cache_default_ttl   = 60
   cdn_cache_max_ttl       = 300
@@ -50,7 +50,7 @@ module "frontend-assets" {
   # ------------------------------------------------------------------------------
   # CDN DISTRIBUTION
   # ------------------------------------------------------------------------------
-  create_cdn              = true
+  create_cdn              = false
   cdn_cache_min_ttl       = 86400
   cdn_cache_default_ttl   = 8640000
   cdn_cache_max_ttl       = 8640000 # 100 days
