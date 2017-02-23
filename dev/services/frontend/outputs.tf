@@ -16,7 +16,3 @@ output "frontend_html_bucket_id" {
 output "frontend_assets_bucket_id" {
   value = "${module.frontend-assets.s3_bucket_id}"
 }
-
-output "frontend_circleci_secret" {
-  value = "${aws_iam_access_key.circleci-frontend-key.encrypted_secret}"
-}

@@ -1,15 +1,7 @@
-resource "aws_iam_access_key" "circleci-frontend-key" {
-  user    = "${aws_iam_user.circleci-frontend-user.name}"
-}
-
-resource "aws_iam_user" "circleci-frontend-user" {
-  name = "circleci-frontend"
-}
-
 resource "aws_iam_user_policy" "circleci-frontend-policy" {
 
   name = "circleci-frontend-policy"
-  user = "${aws_iam_user.circleci-frontend-user.name}"
+  user = "${var.circleci_frontend_user}"
 
   policy = <<EOF
 {
