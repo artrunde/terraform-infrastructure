@@ -8,9 +8,14 @@ module "lambda" {
   source = "../../../../../../../terraform-modules/lambda/"
 
   env             = "dev"
-  name            = "kalles-hello-word"
+  name            = "kalles_hello_word"
   runtime         = "nodejs4.3"
   role            = "${aws_iam_role.test-role-lambda.arn}"
   memory_size     = 1536
+
+  # ------------------------------------------------------------------------------
+  # CREATE EMPTY FUNCTION
+  # ------------------------------------------------------------------------------
+  create_dummy    = true
 
 }
