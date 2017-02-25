@@ -1,9 +1,9 @@
-resource "aws_iam_role_policy_attachment" "test-attach-policy" {
-  role = "${aws_iam_role.test-role-lambda.name}"
-  policy_arn = "${aws_iam_policy.test-policy-lambda.arn}"
+resource "aws_iam_role_policy_attachment" "test_attach_policy" {
+  role = "${aws_iam_role.test_role_lambda.name}"
+  policy_arn = "${aws_iam_policy.test_policy_lambda.arn}"
 }
 
-resource "aws_iam_policy" "test-policy-lambda" {
+resource "aws_iam_policy" "test_policy_lambda" {
 
   name = "test_policy"
 
@@ -24,16 +24,17 @@ resource "aws_iam_policy" "test-policy-lambda" {
                   "dynamodb:DeleteItem",
                   "dynamodb:GetItem",
                   "dynamodb:PutItem",
-                  "dynamodb:UpdateItem"
+                  "dynamodb:UpdateItem",
+                  "dynamodb:Scan"
                   ],
-      "Resource": "${aws_dynamodb_table.basic-dynamodb-table.arn}"
+      "Resource": "${aws_dynamodb_table.basic_dynamodb_table.arn}"
     }
    ]
 }
 EOF
 }
 
-resource "aws_iam_role" "test-role-lambda" {
+resource "aws_iam_role" "test_role_lambda" {
 
   name = "test_role_lambda"
   assume_role_policy = <<EOF

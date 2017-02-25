@@ -2,7 +2,7 @@
 # TEST API - DYNAMODB
 # ------------------------------------------------------------------------------
 
-resource "aws_dynamodb_table" "basic-dynamodb-table" {
+resource "aws_dynamodb_table" "basic_dynamodb_table" {
 
   name = "subscribers"
 

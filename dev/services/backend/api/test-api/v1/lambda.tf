@@ -10,7 +10,7 @@ module "lambda" {
   env             = "dev"
   name            = "kalles_hello_word"
   runtime         = "nodejs4.3"
-  role            = "${aws_iam_role.test-role-lambda.arn}"
+  role            = "${aws_iam_role.test_role_lambda.arn}"
   memory_size     = 1536
 
   # ------------------------------------------------------------------------------
