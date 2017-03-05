@@ -21,6 +21,3 @@ resource "aws_dynamodb_table" "basic_dynamodb_table" {
     env = "dev"
   }
 }
-
-
-
