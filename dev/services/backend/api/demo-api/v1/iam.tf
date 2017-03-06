@@ -1,12 +1,11 @@
-resource "aws_iam_role_policy_attachment" "test_attach_policy" {
-  role = "${aws_iam_role.test_role_lambda.name}"
-  policy_arn = "${aws_iam_policy.test_policy_lambda.arn}"
+resource "aws_iam_role_policy_attachment" "demo_attach_policy" {
+  role        = "${aws_iam_role.demo_role_lambda.name}"
+  policy_arn  = "${aws_iam_policy.demo_policy_lambda.arn}"
 }
 
+resource "aws_iam_policy" "demo_policy_lambda" {
 
-resource "aws_iam_policy" "test_policy_lambda" {
-
-  name = "test_policy"
+  name = "demo_policy"
 
   policy = <<EOF
 {
@@ -35,9 +34,9 @@ resource "aws_iam_policy" "test_policy_lambda" {
 EOF
 }
 
-resource "aws_iam_role" "test_role_lambda" {
+resource "aws_iam_role" "demo_role_lambda" {
 
-  name = "test_role_lambda"
+  name = "demo_role_lambda"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

@@ -11,7 +11,7 @@ module "lambda" {
   env             = "dev"
   name            = "simple-test-php"
   runtime         = "nodejs4.3"
-  role            = "${aws_iam_role.test_role_lambda.arn}"
+  role            = "${aws_iam_role.demo_role_lambda.arn}"
   memory_size     = 1536
 
   # ------------------------------------------------------------------------------

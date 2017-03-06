@@ -15,4 +15,3 @@ module "demo_http_proxy" {
   api_name    = "DemoAPI"
 
 }
-
