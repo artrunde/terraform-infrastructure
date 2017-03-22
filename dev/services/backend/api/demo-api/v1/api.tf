@@ -12,6 +12,6 @@ module "demo_http_proxy" {
   lambda      = "${module.lambda.function_name}"
   region      = "eu-west-1"
   account_id  = "401237329133"
-  api_name    = "DemoAPI"
+  api_name    = "DaliAPI"
 
 }

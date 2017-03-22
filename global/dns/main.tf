@@ -74,3 +74,14 @@ resource "aws_route53_record" "mail-domainkey-03" {
     "b3cgk65xmmrdtkt57c2qcawoqctgsnf5.dkim.amazonses.com."
   ]
 }
+
+resource "aws_route53_record" "mail-verification" {
+
+  zone_id = "${data.aws_route53_zone.primary.zone_id}"
+  name = "_amazonses.artrunde.com."
+  type = "TXT"
+  ttl = "300"
+  records = [
+    "TLyd2UzLKGxoih51kgS/aYmjYNVoJVNqT45wC7iYRmY="
+  ]
+}
