@@ -1,11 +1,11 @@
-resource "aws_iam_role_policy_attachment" "attach-deploy-policy" {
-  role = "${aws_iam_role.lambda_deploy_role.name}"
-  policy_arn = "${aws_iam_policy.lambda_deploy_policy.arn}"
+resource "aws_iam_role_policy_attachment" "attach_osman_policy" {
+  role        = "${aws_iam_role.osman_lambda_deploy_role.name}"
+  policy_arn  = "${aws_iam_policy.osman_lambda_deploy_policy.arn}"
 }
 
-resource "aws_iam_policy" "lambda_deploy_policy" {
+resource "aws_iam_policy" "osman_lambda_deploy_policy" {
 
-  name = "lambda_auto_deploy_policy"
+  name = "${var.namespace}_lambda_deploy_policy_${var.env}"
 
   policy = <<EOF
 {
@@ -32,16 +32,16 @@ resource "aws_iam_policy" "lambda_deploy_policy" {
         "s3:GetObject"
       ],
       "Effect": "Allow",
-      "Resource": "${module.lambda_deploy.bucket_arn}/*"
+      "Resource": "${module.osman_lambda_deploy.bucket_arn}/*"
     }
    ]
 }
 EOF
 }
 
-resource "aws_iam_role" "lambda_deploy_role" {
+resource "aws_iam_role" "osman_lambda_deploy_role" {
 
-  name = "lambda_auto_deploy"
+  name = "${var.namespace}_lambda_deploy_role_${var.env}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
