@@ -8,7 +8,7 @@ module "lambda" {
   source = "../../../../../../terraform-modules/lambda/"
 
   env             = "${var.env}"
-  name            = "${var.namespace}"
+  name            = "${var.namespace}_php_lambda_proxy_${var.env}"
   runtime         = "nodejs4.3"
   role            = "${aws_iam_role.rodin_role_lambda.arn}"
   memory_size     = 1536

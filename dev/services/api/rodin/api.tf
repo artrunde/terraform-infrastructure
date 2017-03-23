@@ -18,7 +18,7 @@ module "rodin_public_http_proxy_resource" {
 
 resource "aws_api_gateway_rest_api" "rodin_proxy_api" {
 
-  name = "${var.namespace}_${var.env}_api"
+  name = "${var.namespace}_api_${var.env}"
 
 }
 
