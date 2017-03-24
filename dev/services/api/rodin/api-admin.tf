@@ -2,7 +2,7 @@
 # DALI API - RESOURCES
 # ------------------------------------------------------------------------------
 
-module "rodin_public_http_proxy_resource" {
+module "rodin_admin_http_proxy_resource" {
 
   source = "../../../../../terraform-modules/api-lambda-proxy-resource/"
 
@@ -10,8 +10,8 @@ module "rodin_public_http_proxy_resource" {
   region            = "${var.region}"
   account_id        = "${var.account_id}"
   authorization     = "NONE"
-  api_id            = "${aws_api_gateway_rest_api.rodin_proxy_public_api.id}"
-  root_resource_id  = "${aws_api_gateway_rest_api.rodin_proxy_public_api.root_resource_id}"
+  api_id            = "${aws_api_gateway_rest_api.rodin_proxy_admin_api.id}"
+  root_resource_id  = "${aws_api_gateway_rest_api.rodin_proxy_admin_api.root_resource_id}"
 
 }
 
@@ -19,18 +19,18 @@ module "rodin_public_http_proxy_resource" {
 # DALI API - API
 # ------------------------------------------------------------------------------
 
-resource "aws_api_gateway_rest_api" "rodin_proxy_public_api" {
-  name = "${var.namespace}_public_api_${var.env}"
+resource "aws_api_gateway_rest_api" "rodin_proxy_admin_api" {
+  name = "${var.namespace}_admin_api_${var.env}"
 }
 
 # ------------------------------------------------------------------------------
 # DALI API - DEPLOYMENTS
 # ------------------------------------------------------------------------------
 
-resource "aws_api_gateway_deployment" "proxy_public_api_deployment" {
+resource "aws_api_gateway_deployment" "proxy_admin_api_deployment" {
 
-  depends_on  = ["module.rodin_public_http_proxy_resource"]
-  rest_api_id = "${aws_api_gateway_rest_api.rodin_proxy_public_api.id}"
+  depends_on  = ["module.rodin_admin_http_proxy_resource"]
+  rest_api_id = "${aws_api_gateway_rest_api.rodin_proxy_admin_api.id}"
   stage_name  = "rodin"
 
 }
