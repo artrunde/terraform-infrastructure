@@ -9,7 +9,7 @@ module "rodin_admin_http_proxy_resource" {
   lambda            = "${module.lambda.function_name}"
   region            = "${var.region}"
   account_id        = "${var.account_id}"
-  authorization     = "NONE"
+  authorization     = "AWS_IAM"
   api_id            = "${aws_api_gateway_rest_api.rodin_proxy_admin_api.id}"
   root_resource_id  = "${aws_api_gateway_rest_api.rodin_proxy_admin_api.root_resource_id}"
 
