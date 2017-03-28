@@ -17,3 +17,8 @@ variable "account_id" {
 variable "region" {
   description = "AWS region"
 }
+
+variable "deployments" {
+  description = "Map og active and staging deployment name"
+  type = "map"
+}

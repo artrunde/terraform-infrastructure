@@ -2,12 +2,12 @@
 # OPTIONAL PARAMETERS
 # ---------------------------------------------------------------------------------------------------------------------
 
-variable "env" {
-  description = "Environment. E.g dev/stg/prd"
+variable "terra_env" {
+  description = "Terraform environment. E.g dev/prd"
 }
 
 variable "namespace" {
-  description = "Namespace of API"
+  description = "Namespace of service"
 }
 
 variable "account_id" {
@@ -18,10 +18,8 @@ variable "region" {
   description = "AWS region"
 }
 
-variable "admin_api_name" {
-  description = "Admin API name"
-}
-
-variable "public_api_name" {
-  description = "Public API name"
+variable "deployments" {
+  description = "Number of API deployment status"
+  type = "list"
+  default = ["standby", "active", "hotspare"]
 }
