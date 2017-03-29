@@ -1,7 +1,3 @@
-resource "random_id" "random_name" {
-  byte_length = 8
-}
-
 module "dali_html" {
 
   //source = "git::git@github.com:artrunde/terraform-modules.git//s3-static-web?ref=0.1.2"
@@ -10,7 +6,7 @@ module "dali_html" {
   # ------------------------------------------------------------------------------
   # STATIC WEBSITE S3 BUCKET
   # ------------------------------------------------------------------------------
-  bucket_name     = "www-${random_id.random_name.hex}-${var.terra_env}.artrunde.com"
+  bucket_name     = "www-${var.terra_env}.artrunde.com"
   env             = "${var.terra_env}"
   root_domain     = "artrunde.com"
 
@@ -42,7 +38,7 @@ module "dali_assets" {
   # ------------------------------------------------------------------------------
   # STATIC WEBSITE S3 BUCKET
   # ------------------------------------------------------------------------------
-  bucket_name     = "assets-${random_id.random_name.hex}-${var.terra_env}.artrunde.com"
+  bucket_name     = "assets-${var.terra_env}.artrunde.com"
   env             = "${var.terra_env}"
   root_domain     = "artrunde.com"
 
@@ -65,5 +61,3 @@ module "dali_assets" {
   cdn_acm_certificate_arn = "arn:aws:acm:us-east-1:401237329133:certificate/890f1dd0-214f-48ab-a600-0e49942fbde5"
 
 }
-
-
