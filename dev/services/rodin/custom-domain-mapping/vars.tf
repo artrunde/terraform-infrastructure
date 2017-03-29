@@ -15,11 +15,12 @@ variable "region" {
 }
 
 variable "custom_domain_deployments" {
-  description = "Map of active and staging deployment name"
+  description = "Use custom domain mapping for API? true/false"
   type = "map"
 }
 
 variable "map_custom_domain" {
   description = "Map a custom domain for active API. api.id:stage"
   type = "string"
+  default = false
 }
