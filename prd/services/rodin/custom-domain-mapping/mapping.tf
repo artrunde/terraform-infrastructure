@@ -28,7 +28,7 @@ resource "aws_route53_record" "example" {
 # BASE PATH MAPPING.
 # ------------------------------------------------------------------------------
 
-resource "aws_api_gateway_base_path_mapping" "rodin_proxy_public_api_mapping" {
+resource "aws_api_gateway_base_path_mapping" "rodin_proxy_public_api_mapping_v1" {
 
   count = "${var.map_custom_domain}"
 

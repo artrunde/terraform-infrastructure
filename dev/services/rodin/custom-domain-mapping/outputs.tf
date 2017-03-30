@@ -11,5 +11,5 @@ output "lambda_staging" {
 }
 
 output "active_v1_url" {
-  value = "https://${aws_route53_record.example.name}/${aws_api_gateway_base_path_mapping.rodin_proxy_public_api_mapping_v1.base_path}"
+  value = "https://${aws_route53_record.example.name}/${aws_api_gateway_base_path_mapping.rodin_proxy_public_api_mapping_v1.base_path}/"
 }
