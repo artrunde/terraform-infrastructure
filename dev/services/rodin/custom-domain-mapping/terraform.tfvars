@@ -11,9 +11,4 @@ region    = "eu-west-1"
 # ------------------------------------------------------------------------------
 
 // Should be map a custom domain?
-map_custom_domain = false
-
-custom_domain_deployments = {
-  active  = "j862ocdrg4:1",
-  staging = "pckzm2hrh7:2"
-}
+map_custom_domain = true

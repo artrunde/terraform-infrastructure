@@ -25,15 +25,15 @@ resource "aws_route53_record" "example" {
 }
 
 # ------------------------------------------------------------------------------
-# CUSTOM DOMAIN NAME - API PUBLIC MAPPING
+# BASE PATH MAPPING.
 # ------------------------------------------------------------------------------
 
 resource "aws_api_gateway_base_path_mapping" "rodin_proxy_public_api_mapping" {
 
   count = "${var.map_custom_domain}"
 
-  api_id      = "${element(split(":", var.custom_domain_deployments["active"]),0)}"
-  stage_name  = "${element(split(":", var.custom_domain_deployments["active"]),1)}"
+  api_id      = "${element(split(":", var.deployment_status["active"]),0)}"
+  stage_name  = "${element(split(":", var.deployment_status["active"]),1)}"
   domain_name = "${aws_api_gateway_domain_name.rodin_api_domain_name.domain_name}"
   base_path   = "v1"
 

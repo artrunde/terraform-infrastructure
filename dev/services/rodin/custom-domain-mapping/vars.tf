@@ -14,13 +14,13 @@ variable "region" {
   description = "AWS region"
 }
 
-variable "custom_domain_deployments" {
-  description = "Use custom domain mapping for API? true/false"
+variable "deployment_status" {
+  description = "Map of API ids and stages for mapping active deployment {status = api.id:stage}"
   type = "map"
 }
 
 variable "map_custom_domain" {
-  description = "Map a custom domain for active API. api.id:stage"
+  description = "Use custom domain mapping for API? true/false"
   type = "string"
   default = false
 }

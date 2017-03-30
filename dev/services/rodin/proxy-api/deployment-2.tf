@@ -3,8 +3,13 @@
 # ------------------------------------------------------------------------------
 
 resource "aws_api_gateway_rest_api" "rodin_proxy_public_api_2" {
-  name = "${var.namespace}_public_api_${var.terra_env}_2"
+  name = "${var.namespace}_${random_id.random_name_2.hex}_${var.terra_env}_2"
 }
+
+resource "random_id" "random_name_2" {
+  byte_length = 8
+}
+
 
 # ------------------------------------------------------------------------------
 # DALI API - DEPLOYMENTS
