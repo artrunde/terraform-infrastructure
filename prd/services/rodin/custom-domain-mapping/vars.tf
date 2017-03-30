@@ -10,10 +10,17 @@ variable "namespace" {
   description = "Namespace of service"
 }
 
-variable "account_id" {
-  description = "AWS account number"
-}
-
 variable "region" {
   description = "AWS region"
+}
+
+variable "deployment_status" {
+  description = "Map of API ids and stages for mapping active deployment {status = api.id:stage}"
+  type = "map"
+}
+
+variable "map_custom_domain" {
+  description = "Use custom domain mapping for API? true/false"
+  type = "string"
+  default = false
 }

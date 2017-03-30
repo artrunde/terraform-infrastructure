@@ -1,8 +1,7 @@
 # ------------------------------------------------------------------------------
-# INPUT VARIABLES
+# OUTPUTS
 # ------------------------------------------------------------------------------
 
-terra_env         = "dev"
-namespace         = "rodin"
-account_id        = "401237329133"
-region            = "eu-west-1"
+output "auto_deploy_bucket_name" {
+  value = "${module.osman_lambda_deploy.auto_deploy_bucket_name}"
+}

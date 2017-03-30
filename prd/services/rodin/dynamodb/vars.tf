@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 variable "terra_env" {
-  description = "Terraform environment. E.g dev/prd"
+  description = "Environment. E.g dev/stg/prd"
 }
 
 variable "namespace" {

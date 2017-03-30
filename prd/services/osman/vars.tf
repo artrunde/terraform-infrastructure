@@ -2,12 +2,12 @@
 # OPTIONAL PARAMETERS
 # ---------------------------------------------------------------------------------------------------------------------
 
-variable "terra_env" {
-  description = "Terraform environment. E.g dev/prd"
+variable "env" {
+  description = "Environment. E.g dev/stg/prd"
 }
 
 variable "namespace" {
-  description = "Namespace of service"
+  description = "Namespace of API"
 }
 
 variable "account_id" {
