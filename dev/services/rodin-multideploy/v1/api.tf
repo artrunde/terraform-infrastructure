@@ -13,7 +13,7 @@ module "green" {
   region          = "${var.region}"
   account_id      = "${var.account_id}"
   role_lambda_arn = "${aws_iam_role.role_lambda.arn}"
-  api_version     = "v1"
+  api_version     = "${var.api_version}"
 
 
 }
@@ -29,7 +29,7 @@ module "blue" {
   region          = "${var.region}"
   account_id      = "${var.account_id}"
   role_lambda_arn = "${aws_iam_role.role_lambda.arn}"
-  api_version     = "v1"
+  api_version     = "${var.api_version}"
 
 
 }
