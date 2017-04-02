@@ -5,3 +5,5 @@
 terra_env               = "dev"
 namespace               = "rodin"
 region                  = "eu-west-1"
+account_id              = "401237329133"
+api_version             = "v1"

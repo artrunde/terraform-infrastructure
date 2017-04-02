@@ -5,7 +5,7 @@
 module "osman_lambda_deploy" {
 
   //source = "git::git@github.com:artrunde/terraform-modules.git//s3-static-web?ref=0.1.2"
-  source = "../../../../terraform-modules/lambda-deploy/"
+  source = "../../../../terraform-modules/aws/lambda-deploy/"
 
   env             = "${var.env}"
   name            = "${var.namespace}_lambda_deploy_${random_id.random_name.hex}_${var.env}"

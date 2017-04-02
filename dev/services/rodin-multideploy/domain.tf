@@ -7,20 +7,6 @@ data "aws_route53_zone" "primary" {
   private_zone = false
 }
 
-# ------------------------------------------------------------------------------
-# MAPPING VERIONS - CHANGE HERE WHEN ADDING NEW URL VERSIONS
-# ------------------------------------------------------------------------------
-
-module "mapping_version" {
-
-  source = "../../../../terraform-modules/aws/base-path-mapping"
-
-  api_version_map = "${var.api_active_version_map}"
-
-  domain_name = "${module.custom_domain.domain_name}"
-
-}
-
 module "custom_domain" {
 
   source = "../../../../terraform-modules/aws/api-custom-domain"
