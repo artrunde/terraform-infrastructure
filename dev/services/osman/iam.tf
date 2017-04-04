@@ -5,7 +5,7 @@ resource "aws_iam_role_policy_attachment" "attach_osman_policy" {
 
 resource "aws_iam_policy" "osman_lambda_deploy_policy" {
 
-  name = "${var.namespace}_lambda_deploy_policy_${var.env}"
+  name = "${var.namespace}_lambda_deploy_policy_${var.terra_env}"
 
   policy = <<EOF
 {
@@ -41,7 +41,7 @@ EOF
 
 resource "aws_iam_role" "osman_lambda_deploy_role" {
 
-  name = "${var.namespace}_lambda_deploy_role_${var.env}"
+  name = "${var.namespace}_lambda_deploy_role_${var.terra_env}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -53,6 +53,40 @@ resource "aws_iam_role" "osman_lambda_deploy_role" {
       },
       "Action": "sts:AssumeRole"
     }
+  ]
+}
+EOF
+}
+
+# ------------------------------------------------------------------------------
+# CREATE POLICY FOR CircleCI user
+# ------------------------------------------------------------------------------
+
+resource "aws_iam_policy" "policy_osman_s3" {
+
+  name = "${var.namespace}_policy_s3_${var.terra_env}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "s3:DeleteObject",
+              "s3:GetObject",
+              "s3:ListAllMyBuckets",
+              "s3:ListBucket",
+              "s3:ListBucketMultipartUploads",
+              "s3:ListBucketVersions",
+              "s3:ListMultipartUploadParts",
+              "s3:PutObject",
+              "s3:ReplicateObject"
+          ],
+          "Resource": [
+              "${module.osman_lambda_deploy.bucket_arn}"
+          ]
+      }
   ]
 }
 EOF

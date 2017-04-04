@@ -2,7 +2,7 @@
 # OPTIONAL PARAMETERS
 # ---------------------------------------------------------------------------------------------------------------------
 
-variable "env" {
+variable "terra_env" {
   description = "Environment. E.g dev/stg/prd"
 }
 
