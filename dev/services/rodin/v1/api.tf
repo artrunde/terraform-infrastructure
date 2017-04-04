@@ -15,7 +15,6 @@ module "green" {
   role_lambda_arn = "${aws_iam_role.role_lambda.arn}"
   api_version     = "${var.api_version}"
 
-
 }
 
 module "blue" {
@@ -30,6 +29,5 @@ module "blue" {
   account_id      = "${var.account_id}"
   role_lambda_arn = "${aws_iam_role.role_lambda.arn}"
   api_version     = "${var.api_version}"
-
 
 }
