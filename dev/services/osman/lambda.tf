@@ -13,6 +13,8 @@ module "osman_lambda_deploy" {
   role            = "${aws_iam_role.osman_lambda_deploy_role.arn}"
   memory_size     = 1536
   bucket_name     = "${var.namespace}-s3-deploy-${random_id.random_name.hex}-${var.terra_env}"
+  account_id      = "${var.account_id}"
+  s3_user         = "circleci_${var.namespace}"
 
 }
 
