@@ -26,21 +26,18 @@ variable "active" {
   description = "Active stage \"blue\" or \"green\". Get current with 'terraform output active'"
 }
 
-variable "domain_name" {
-  description = "Domain name for identifying custom mapping"
-  default = "api-rodin-dev.artrunde.com"
-}
-
 /*
-Deletes old staging env nd creates new for staging
-1. terraform taint -module=blue aws_api_gateway_rest_api.proxy_public_api
-2. terraform plan $(terraform output active_stage)
-3. terraform apply $(terraform output active_stage)
+Lets say green environment i currently active.
 
-Deletes old staging env nd creates new for staging
+Delete old staging environment and create new:
 1. terraform taint -module=blue aws_api_gateway_rest_api.proxy_public_api
-2. terraform plan blue
-3. terraform apply $(terraform output active_stage)
+2. terraform plan -var active=$(terraform output active)
+3. terraform apply -var active=$(terraform output active)
+
+Delete old staging env, creates new and activate
+1. terraform taint -module=blue aws_api_gateway_rest_api.proxy_public_api
+2. terraform plan -var active=blue
+3. terraform apply -var active=blue
 
 active = green
 active_url = https://api-rodin-dev.artrunde.com/v1/

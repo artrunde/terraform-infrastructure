@@ -10,6 +10,6 @@ module "mapping" {
   active      = "${var.active}"
   version     = "${var.api_version}"
 
-  domain_name = "${var.domain_name}"
+  domain_name = "api-${var.namespace}-${var.terra_env}.artrunde.com"
 
 }
