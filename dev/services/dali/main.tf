@@ -1,7 +1,7 @@
 module "dali_html" {
 
   //source = "git::git@github.com:artrunde/terraform-modules.git//s3-static-web?ref=0.1.2"
-  source = "../../../../terraform-modules/static-website/"
+  source = "../../../../terraform-modules/aws/static-website/"
 
   # ------------------------------------------------------------------------------
   # STATIC WEBSITE S3 BUCKET
@@ -33,7 +33,7 @@ module "dali_html" {
 module "dali_assets" {
 
   //source = "git::git@github.com:artrunde/terraform-modules.git//s3-static-web?ref=0.1.2"
-  source = "../../../../terraform-modules/static-website/"
+  source = "../../../../terraform-modules/aws/static-website/"
 
   # ------------------------------------------------------------------------------
   # STATIC WEBSITE S3 BUCKET
