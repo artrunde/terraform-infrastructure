@@ -73,18 +73,10 @@ resource "aws_iam_policy" "policy_osman_s3" {
       {
           "Effect": "Allow",
           "Action": [
-              "s3:DeleteObject",
-              "s3:GetObject",
-              "s3:ListAllMyBuckets",
-              "s3:ListBucket",
-              "s3:ListBucketMultipartUploads",
-              "s3:ListBucketVersions",
-              "s3:ListMultipartUploadParts",
-              "s3:PutObject",
-              "s3:ReplicateObject"
+              "s3:*"
           ],
           "Resource": [
-              "${module.osman_lambda_deploy.bucket_arn}"
+              "arn:aws:s3:::osman*_${var.terra_env}"
           ]
       }
   ]
