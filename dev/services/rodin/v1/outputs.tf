@@ -21,3 +21,7 @@ output "active" {
 output "active_url" {
   value = "${module.mapping.active_url}"
 }
+
+output "active_base_url" {
+  value = "${module.mapping.active_base_url}"
+}
