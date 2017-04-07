@@ -43,10 +43,10 @@ resource "aws_dynamodb_table" "tags_dynamodb_table" {
     type = "S"
   }
 
-  range_key = "place_id"
+  range_key = "category"
 
   attribute {
-    name = "place_id"
+    name = "category"
     type = "S"
   }
 
