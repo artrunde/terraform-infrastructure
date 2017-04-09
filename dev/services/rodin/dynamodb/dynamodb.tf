@@ -48,6 +48,11 @@ resource "aws_dynamodb_table" "tags_dynamodb_table" {
     type = "S"
   }
 
+  attribute {
+    name = "label"
+    type = "S"
+  }
+
   global_secondary_index {
     name               = "BelongsToTagIndex"
     hash_key           = "belongs_to"
@@ -55,6 +60,15 @@ resource "aws_dynamodb_table" "tags_dynamodb_table" {
     write_capacity     = 3
     read_capacity      = 3
     projection_type    = "ALL"
+  }
+
+  global_secondary_index {
+    name               = "LabelBelongsToIndex"
+    hash_key           = "label"
+    range_key          = "belongs_to"
+    write_capacity     = 3
+    read_capacity      = 3
+    projection_type    = "KEYS_ONLY"
   }
 
   tags {
