@@ -10,7 +10,7 @@ resource "aws_dynamodb_table" "search_terms_dynamodb_table" {
   write_capacity  = 3
 
   hash_key  = "search_term"
-  range_key = "tag_id"
+  range_key = "label"
 
   attribute {
     name = "search_term"
@@ -18,7 +18,7 @@ resource "aws_dynamodb_table" "search_terms_dynamodb_table" {
   }
 
   attribute {
-    name = "tag_id"
+    name = "label"
     type = "S"
   }
 
