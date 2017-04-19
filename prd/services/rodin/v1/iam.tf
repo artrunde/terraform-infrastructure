@@ -28,7 +28,7 @@ resource "aws_iam_policy" "policy_lambda" {
         "dynamodb:UpdateItem",
         "dynamodb:Scan"
         ],
-      "Resource": "arn:aws:dynamodb:${var.region}:${var.account_id}:table/${var.namespace}_*_${var.terra_env}"
+      "Resource": "arn:aws:dynamodb:${var.region}:${var.account_id}:table/${var.namespace}_*_${var.terra_env}*"
     }
    ]
 }
