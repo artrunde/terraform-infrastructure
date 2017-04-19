@@ -22,6 +22,20 @@ resource "aws_dynamodb_table" "search_terms_dynamodb_table" {
     type = "S"
   }
 
+  attribute {
+    name = "tag_id"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name               = "TagSearchTermIndex"
+    hash_key           = "tag_id"
+    range_key          = "search_term"
+    write_capacity     = 3
+    read_capacity      = 3
+    projection_type    = "ALL"
+  }
+
   tags {
     name = "${var.namespace}_${var.terra_env}_search_terms"
     env = "${var.terra_env}"
