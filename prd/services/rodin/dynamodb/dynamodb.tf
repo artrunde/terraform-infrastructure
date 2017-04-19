@@ -9,18 +9,31 @@ resource "aws_dynamodb_table" "search_terms_dynamodb_table" {
   read_capacity   = 3
   write_capacity  = 3
 
-  hash_key = "search_term_id"
+  hash_key  = "search_term"
+  range_key = "label"
 
   attribute {
-    name = "search_term_id"
+    name = "search_term"
     type = "S"
   }
 
-  range_key = "priority"
+  attribute {
+    name = "label"
+    type = "S"
+  }
 
   attribute {
-    name = "priority"
-    type = "N"
+    name = "tag_id"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name               = "TagSearchTermIndex"
+    hash_key           = "tag_id"
+    range_key          = "search_term"
+    write_capacity     = 3
+    read_capacity      = 3
+    projection_type    = "ALL"
   }
 
   tags {
@@ -36,18 +49,40 @@ resource "aws_dynamodb_table" "tags_dynamodb_table" {
   read_capacity   = 3
   write_capacity  = 3
 
-  hash_key = "tag_id"
+  hash_key  = "tag_id"
+  range_key = "belongs_to"
 
   attribute {
     name = "tag_id"
     type = "S"
   }
 
-  range_key = "category"
+  attribute {
+    name = "belongs_to"
+    type = "S"
+  }
 
   attribute {
-    name = "category"
+    name = "label"
     type = "S"
+  }
+
+  global_secondary_index {
+    name               = "BelongsToTagIndex"
+    hash_key           = "belongs_to"
+    range_key          = "tag_id"
+    write_capacity     = 3
+    read_capacity      = 3
+    projection_type    = "ALL"
+  }
+
+  global_secondary_index {
+    name               = "LabelBelongsToIndex"
+    hash_key           = "label"
+    range_key          = "belongs_to"
+    write_capacity     = 3
+    read_capacity      = 3
+    projection_type    = "KEYS_ONLY"
   }
 
   tags {
