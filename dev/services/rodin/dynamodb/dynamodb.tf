@@ -105,8 +105,22 @@ resource "aws_dynamodb_table" "places_dynamodb_table" {
     type = "S"
   }
 
+  attribute {
+    name = "url"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name               = "urlIndex"
+    hash_key           = "url"
+    write_capacity     = 3
+    read_capacity      = 3
+    projection_type    = "ALL"
+  }
+
   tags {
     name = "${var.namespace}_${var.terra_env}_places"
     env = "${var.terra_env}"
   }
+
 }
