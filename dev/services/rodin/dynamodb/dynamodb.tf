@@ -23,13 +23,13 @@ resource "aws_dynamodb_table" "search_terms_dynamodb_table" {
   }
 
   attribute {
-    name = "tag_id"
+    name = "belongs_to"
     type = "S"
   }
 
   global_secondary_index {
-    name               = "TagSearchTermIndex"
-    hash_key           = "tag_id"
+    name               = "BelongsToSearchTermIndex"
+    hash_key           = "belongs_to"
     range_key          = "search_term"
     write_capacity     = 3
     read_capacity      = 3
